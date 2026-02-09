@@ -44,8 +44,8 @@ Display the confusion matrix, classification report, and predictions.
 
 ## PROGRAM
 
-### Name: 
-### Register Number:
+### Name: Pavitra J
+### Register Number: 212224110043
 
 ```python
 class PeopleClassifier(nn.Module):
