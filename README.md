@@ -101,15 +101,17 @@ def train_model(model, train_loader, criterion, optimizer, epochs):
 
 
 ## Dataset Information
+<img width="1191" height="242" alt="image" src="https://github.com/user-attachments/assets/a2f4ef83-cbf9-4b22-a5d4-28ebe7570e06" />
 
 
 ## OUTPUT
 
 ### Confusion Matrix and Classification report
-<img width="910" height="780" alt="image" src="https://github.com/user-attachments/assets/fa04aab4-f622-4dcf-9791-00b4c9fedc6a" />
+<img width="649" height="551" alt="image" src="https://github.com/user-attachments/assets/d1182662-315e-40a9-939b-08439d92ca84" />
 
 
-<img width="350" height="88" alt="image" src="https://github.com/user-attachments/assets/7904ce15-3d99-4814-b592-ea20488e992f" />
+<img width="1211" height="648" alt="image" src="https://github.com/user-attachments/assets/4e1970ff-c42e-4263-b3b9-b2f236960bf4" />
+
 
 
 ## RESULT
