@@ -48,22 +48,27 @@ Display the confusion matrix, classification report, and predictions.
 ### Register Number: 212224110043
 
 ```python
+
+# Define Neural Network(Model1)
 class PeopleClassifier(nn.Module):
     def __init__(self, input_size):
         super(PeopleClassifier, self).__init__()
-        self.fc1=nn.Linear(input_size,16)
-        self.fc2=nn.Linear(16,8)
-        self.fc3=nn.Linear(8,4)
 
-
-
-
+        # Fully Connected Layers
+        self.fc1 = nn.Linear(input_size, 64)
+        self.relu1 = nn.ReLU()
+        self.fc2 = nn.Linear(64, 32)
+        self.relu2 = nn.ReLU()
+        self.fc3 = nn.Linear(32, 2)   # 2 output classes (change if needed)
 
     def forward(self, x):
-      x=F.relu(self.fc1(x))
-      x=F.relu(self.fc2(x))
-      x=self.fc3(x)
-      return x
+        x = self.fc1(x)
+        x = self.relu1(x)
+        x = self.fc2(x)
+        x = self.relu2(x)
+        x = self.fc3(x)
+
+        return x
 
         
 
@@ -80,22 +85,39 @@ optimizer =optim.Adam(model.parameters(), lr=0.01)
 
 ```
 ```python
+
+# Training Loop
 def train_model(model, train_loader, criterion, optimizer, epochs):
-   for epoch in range(epochs):
-    model.train()
-    for X_batch, y_batch in train_loader:
-      optimizer.zero_grad()
-      outputs = model(X_batch)
-      loss = criterion(outputs, y_batch)
-      loss.backward ()
-      optimizer.step()
 
+    for epoch in range(epochs):
+        running_loss = 0.0
 
+        for inputs, labels in train_loader:
 
+            # Move to device (if using GPU)
+            inputs = inputs.to(device)
+            labels = labels.to(device)
 
+            # Zero gradients
+            optimizer.zero_grad()
 
-    if (epoch + 1) % 10 == 0:
-        print(f'Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}')
+            # Forward pass
+            outputs = model(inputs)
+
+            # Compute loss
+            loss = criterion(outputs, labels)
+
+            # Backward pass
+            loss.backward()
+
+            # Update weights
+            optimizer.step()
+
+            running_loss += loss.item()
+
+        # Print every 10 epochs
+        if (epoch + 1) % 10 == 0:
+            print(f'Epoch [{epoch+1}/{epochs}], Loss: {running_loss/len(train_loader):.4f}')
 ```
 
 
